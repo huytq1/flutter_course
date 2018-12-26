@@ -1,4 +1,4 @@
+window checkin
 test test
 macos
-github:
 https://github.com/huytq1/flutter_course.git
