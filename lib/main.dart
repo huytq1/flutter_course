@@ -5,37 +5,107 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('EasyList'),
-        ),
-        body: Column(
-          children: [
-            Container(
-              margin: EdgeInsets.all(10.0),
-              child: RaisedButton(
-                onPressed: () {
 
-                },
-                child: Text('Add Product'),
-              ),
-            ),
-            Card(
-              child: Column(
-                children: <Widget>[
-                  Image.asset('assets/food.jpg'),
-                  Text('Food Paradise')
-                ],
-              ),
-            )
-          ],
-        ),
+
+    return MaterialApp(
+      title: 'Flutter demo',
+      theme:ThemeData(
+        primarySwatch: Colors.teal
       ),
+      home: Scaffold(appBar: AppBar(
+        title: Text('Top Lakes')
+      ),
+      body: ListView(children: <Widget>[
+        Image.asset('assets/lake.jpg',
+        width: 600.0,
+        height: 240.0,
+        fit: BoxFit.cover,),
+        buildTitleSection(),
+        buildColumnSection(context)
+      ],),
+      )
+
     );
   }
-}
 
+  Widget buildTitleSection(){
+    Widget titleSection = Container(
+      padding: const EdgeInsets.all(32.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: Text(
+                    'Oeschinen Lake Campground',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Text(
+                  'Kandersteg, Switzerland',
+                  style: TextStyle(
+                    color: Colors.grey[500],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Icon(
+            Icons.star,
+            color: Colors.red[500],
+          ),
+          Text('41'),
+        ],
+      ),
+    );
+
+    return titleSection;
+  }
+
+  Widget buildColumnSection(BuildContext context)
+  {
+    Widget columnSection = Container(
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        buildButtonColumn(context, Icons.call, "CALL"),
+        buildButtonColumn(context, Icons.near_me, "ROUTE"),
+        buildButtonColumn(context, Icons.share, "SHARE"),
+      ],),
+    );
+
+    return columnSection;
+  }
+
+  Column buildButtonColumn(BuildContext context, IconData icon, String label)
+  {
+     Color color = Theme.of(context).primaryColor;
+
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, color: color),
+          Container(
+            margin: const EdgeInsets.only(top: 8.0),
+            child: Text(
+              label,
+              style: TextStyle(
+                fontSize: 12.0,
+                fontWeight: FontWeight.w400,
+                color: color,
+              ),
+            ),
+          ),
+        ],
+      );
+
+  }
+}
 /* import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
