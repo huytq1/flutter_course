@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FavoriteWidget extends StatefulWidget{
+  FavoriteWidget({Key key}):super(key:key);
   @override
   _FavoriteWidgetState createState()=> _FavoriteWidgetState();
 }
